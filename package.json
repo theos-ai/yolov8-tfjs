@@ -1,0 +1,30 @@
+{
+  "name": "yolov8-tfjs",
+  "description": "YOLOv8 in your browser with Tensorflow.js",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "yolov8",
+    "javascript",
+    "react",
+    "tensorflow.js"
+  ],
+  "author": "Theos AI",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.1.0",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.3"
+  }
+}
