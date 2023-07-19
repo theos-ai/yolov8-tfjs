@@ -4,8 +4,6 @@
   <img src="./sample.jpg" />
 </p>
 
----
-
 YOLOv8 running locally on your browser using tensorflow.js.
 
 **Run**
