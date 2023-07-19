@@ -6,5 +6,5 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 2000,
   },
-  base: '/yolov8-tfjs/',
+  base: '/',
 });
