@@ -1,10 +1,10 @@
-# YOLOv8 on your browser with TensorflowJS
+# YOLOv8 with TensorflowJS
 
 <p align="center">
   <img src="./sample.jpg" />
 </p>
 
-YOLOv8 running locally on your browser using tensorflow.js.
+YOLOv8 running locally in your browser using TensorflowJS.
 
 **Run**
 
