@@ -6,6 +6,8 @@
 
 YOLOv8 running locally in your browser using TensorflowJS.
 
+Try out the [Live Demo](https://yolov8.theos.ai/).
+
 **Run**
 
 ```bash
