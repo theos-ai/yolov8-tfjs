@@ -1,4 +1,4 @@
-# YOLOv8 with TensorflowJS
+# YOLOv8 on TensorflowJS
 
 <p align="center">
   <img src="./sample.jpg" />
