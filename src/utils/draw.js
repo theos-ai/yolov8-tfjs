@@ -56,16 +56,7 @@ export function drawLabels(canvasRef, landmarks_data, boxes_data, scores_data, w
     ctx.strokeRect(x1, y1, width, height);
     let keypoints = landmarks_data.slice([i, 0, 0], [1, -1, -1]).reshape([17, 3]).arraySync();
 
-    for (let j = 0; j < keypoints.length; j++) {
-      const x = keypoints[j][0] * widthRatio;
-      const y = keypoints[j][1] * heightRatio;
-      const bodyPart = Object.keys(colors)[j];
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, 2 * Math.PI);
-      ctx.fillStyle = colors[bodyPart];
-      ctx.fill();
-      ctx.closePath();
-    }
+    
     ctx.lineWidth = 2;
     ctx.strokeStyle = 'white';
 
@@ -78,6 +69,16 @@ export function drawLabels(canvasRef, landmarks_data, boxes_data, scores_data, w
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
       ctx.stroke();
+      ctx.closePath();
+    }
+    for (let j = 0; j < keypoints.length; j++) {
+      const x = keypoints[j][0] * widthRatio;
+      const y = keypoints[j][1] * heightRatio;
+      const bodyPart = Object.keys(colors)[j];
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
+      ctx.fillStyle = colors[bodyPart];
+      ctx.fill();
       ctx.closePath();
     }
   }

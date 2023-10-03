@@ -18,7 +18,7 @@ const App = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const modelName = 'yolov8n-pose';
-  const modelURL = 'https://storage.googleapis.com/theos-development-static-v1/yolov8_pose_nano_192/model.json';
+  const modelURL = 'https://storage.googleapis.com/theos-development-static-v1/yolov8_pose_nano_160/model.json';
   const previousTimestamp = useRef(null);
 
   useEffect(() => {
