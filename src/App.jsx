@@ -3,9 +3,8 @@ import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 import Loader from './components/Loader';
 import StreamController from './components/StreamController';
-import { detect, detectVideo } from './utils/detect';
+import { detect, detectVideo as originalDetectVideo } from './utils/detect';
 import './style/App.css';
-
 
 const App = () => {
   const [loading, setLoading] = useState({ loading: true, progress: 0 });
@@ -13,12 +12,14 @@ const App = () => {
     network: null,
     inputShape: [1, 0, 0, 3],
   });
+  const [fps, setFps] = useState(0);
   const imageRef = useRef(null);
   const cameraRef = useRef(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const modelName = 'yolov8n-pose';
-  const modelURL = 'https://storage.googleapis.com/theos-development-static-v1/yolov8-nano/model.json';
+  const modelURL = 'https://storage.googleapis.com/theos-development-static-v1/yolov8_pose_nano_192/model.json';
+  const previousTimestamp = useRef(null);
 
   useEffect(() => {
     tf.ready().then(async () => {
@@ -38,6 +39,23 @@ const App = () => {
     });
   }, []);
 
+  const detectVideo = async (video, model, canvas) => {
+    const now = performance.now();
+    if (previousTimestamp.current) {
+      const duration = now - previousTimestamp.current;
+      const fpsValue = 1000 / duration;
+      setFps(fpsValue);
+    }
+    previousTimestamp.current = now;
+
+    await originalDetectVideo(video, model, canvas);  // Assuming this is your original detection code
+
+    if (video.paused || video.ended) {
+      return;
+    }
+    requestAnimationFrame(() => detectVideo(video, model, canvas));
+  };
+
   return (
     <div className='App'>
       <div className='header'>
@@ -47,6 +65,7 @@ const App = () => {
           :
           <p>{modelName} loaded</p>
         }
+        <p>FPS: {fps.toFixed(2)}</p>  {/* Display the FPS */}
       </div>
       <div className='content'>
         <img

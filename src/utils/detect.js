@@ -59,16 +59,13 @@ export async function detect(source, model, canvasRef, callback = () => { }) {
   tf.engine().endScope();
 };
 
-export function detectVideo(vidSource, model, canvasRef) {
-  const detectFrame = async () => {
-    if (vidSource.videoWidth === 0 && vidSource.srcObject === null) {
-      const ctx = canvasRef.getContext('2d');
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      return;
-    }
-    detect(vidSource, model, canvasRef, () => {
-      requestAnimationFrame(detectFrame);
-    });
-  };
-  detectFrame();
+export async function detectVideo(vidSource, model, canvasRef) {
+  if (vidSource.videoWidth === 0 && vidSource.srcObject === null) {
+    const ctx = canvasRef.getContext('2d');
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    return;
+  }
+  detect(vidSource, model, canvasRef, () => {
+    requestAnimationFrame(detectFrame);
+  });
 };
